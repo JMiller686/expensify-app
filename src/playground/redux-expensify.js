@@ -19,7 +19,6 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
 };
 
 // Filters redcuer
-// text = '', sortBy = 'date', startDate = undefined, endDate = undefined
 const filtersReducerDefaultState = {
     text: '',
     sortBy: 'date',
