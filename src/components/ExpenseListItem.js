@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { removeExpense } from '../actions/expenses';
 
-const ExpenseListItem = (props) => (
+//destructured props to use directly instead of off props object
+const ExpenseListItem = ({dispatch, id, description, amount, createdAt}) => (
     <div>
-        <h3>{props.description}</h3>
-        <p>{props.amount} - {props.createdAt}</p>
+        <h3>{description}</h3>
+        <p>{amount} - {createdAt}</p>
         <button onClick={() => {
-            props.dispatch(removeExpense(props))
+            dispatch(removeExpense(id))
         }}>Remove</button>
     </div>
 );
