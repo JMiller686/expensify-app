@@ -1,8 +1,9 @@
 import React from 'react';
+import ExpenseList from '../components/ExpenseList';
 
 const DashboardPage = () => (
     <div>
-        This is from my dashboard component
+        <ExpenseList />
     </div>
 );
 
