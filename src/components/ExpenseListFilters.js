@@ -9,9 +9,9 @@ const ExpenseListFilters = (props) => (
         }}/>
         <select value={props.filters.sortBy} onChange={(e) => {
             if(e.target.value === 'amount') {
-                props.dispatch(sortByAmount(e.target.value))
+                props.dispatch(sortByAmount())
             } else if(e.target.value === 'date') {
-                props.dispatch(sortByDate(e.target.value))
+                props.dispatch(sortByDate())
             }
         }}>
             <option value="date">Date</option>
