@@ -12,7 +12,8 @@ export default class ExpenseForm extends React.Component {
         note: '',
         amount: '',
         createdAt: moment(),
-        calendarFocused: false
+        calendarFocused: false,
+        submitError: false
     };
     onDescriptionChange = (e) => {
         const description = e.target.value;
@@ -35,19 +36,41 @@ export default class ExpenseForm extends React.Component {
         }
     }
     onDateChange = (createdAt) => {
-        this.setState(() => ({
-            createdAt
-        }))
+        if(createdAt) {
+            this.setState(() => ({
+                createdAt
+            }))
+        }
     }
     onFocusChange = ({ focused }) => {
         this.setState(() => ({
             calendarFocused: focused
         }))
     }
+    onSubmit = (e) => {
+        e.preventDefault();
+        if(!this.state.description || !this.state.amount) {
+            //Set error state equal to 'Please provide description and amount'
+            this.setState(() => ({
+                submitError: true
+            }));
+        } else {
+            //Clear the error
+            this.setState(() => ({
+                submitError: false
+            }));
+            this.props.onSubmit({
+                description: this.state.description,
+                amount: parseFloat(this.state.amount, 10) * 100,
+                createdAt: this.state.createdAt.valueOf(),
+                note: this.state.note
+            });
+        }
+    }
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.onSubmit}>
                     <input 
                         type="text" 
                         placeholder="Description" 
@@ -74,6 +97,7 @@ export default class ExpenseForm extends React.Component {
                         value={this.state.note}
                         onChange={this.onNoteChange}></textarea>
                     <button>Add Expense</button>
+                    {this.state.submitError && <p>Please provide description and amount</p>} 
                 </form>
             </div>
         );
