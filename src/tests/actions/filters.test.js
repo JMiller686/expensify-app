@@ -1,4 +1,4 @@
-import { setStartDate, setEndDate } from '../../actions/filters';
+import { setStartDate, setEndDate, sortByAmount, sortByDate } from '../../actions/filters';
 import moment from 'moment';
 
 test('should generate set start date action object', () => {
@@ -16,3 +16,17 @@ test('should generate set end date action object', () => {
         endDate: moment(0)
     })
 });
+
+test('should generate sort by date action object', () => {
+    const action = sortByDate();
+    expect(action).toEqual({
+        type: "SORT_BY_DATE"
+    });
+});
+
+test('should generate sort by amount action object', () => {
+    const action  = sortByAmount();
+    expect(action).toEqual({
+        type: 'SORT_BY_AMOUNT'
+    });
+})
