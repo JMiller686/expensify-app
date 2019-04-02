@@ -15,7 +15,7 @@ export default class ExpenseForm extends React.Component {
             amount: props.expense ? (props.expense.amount / 100).toString() : '',
             createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
             calendarFocused: false,
-            submitError: false
+            submitError: ''
         };
     }
     onDescriptionChange = (e) => {
@@ -55,12 +55,12 @@ export default class ExpenseForm extends React.Component {
         if(!this.state.description || !this.state.amount) {
             //Set error state equal to 'Please provide description and amount'
             this.setState(() => ({
-                submitError: true
+                submitError: 'Please provide description and amount.'
             }));
         } else {
             //Clear the error
             this.setState(() => ({
-                submitError: false
+                submitError: ''
             }));
             this.props.onSubmit({
                 description: this.state.description,
@@ -101,7 +101,7 @@ export default class ExpenseForm extends React.Component {
                         value={this.state.note}
                         onChange={this.onNoteChange}></textarea>
                     <button>Add Expense</button>
-                    {this.state.submitError && <p>Please provide description and amount</p>} 
+                    {this.state.submitError && <p>{this.state.submitError}</p>} 
                 </form>
             </div>
         );
