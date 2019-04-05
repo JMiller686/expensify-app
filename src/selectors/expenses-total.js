@@ -1,4 +1,4 @@
-export default (expenses) => {
+const selectExpensesTotal = (expenses) => {
     if(expenses.length === 0) {
         return 0;
     } else {
@@ -7,3 +7,5 @@ export default (expenses) => {
         }, 0);
     }
 };
+
+export default selectExpensesTotal;
