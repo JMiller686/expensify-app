@@ -21,4 +21,18 @@ database.ref().set({
         city: 'Chicago',
         country: 'United States'
     }
+});
+
+// database.ref().set('this is my data');
+
+database.ref('age').set(27);
+database.ref('location/city').set('Miami');
+
+database.ref('attributes').set({
+    height: 63,
+    weight: 210
 })
+
+// attributes
+//    height
+//    weight
