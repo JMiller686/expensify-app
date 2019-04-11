@@ -19,7 +19,7 @@ const jsx = (
     </Provider>
 );
 
-const hasRendered = false;
+let hasRendered = false;
 const renderApp = () => {
     if(!hasRendered) {
         ReactDOM.render(jsx, document.getElementById('app'));
@@ -33,6 +33,9 @@ firebase.auth().onAuthStateChanged((user) => {
     if(user) {
         store.dispatch(startSetExpenses()).then(() => {
             renderApp();
+            if(history.location.pathname === '/') {
+                history.push('/dashboard')
+            }
         });
     } else {
         renderApp();
